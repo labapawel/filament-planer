@@ -1,0 +1,44 @@
+/* Base table styles */
+.filament-planer-table table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.filament-planer-table table th,
+.filament-planer-table table td {
+    border: 1px solid #e5e7eb;
+    /* gray-200 */
+}
+
+/* Header specific styles */
+.filament-planer-table th {
+    background-color: #f9fafb;
+    /* gray-50 */
+}
+
+/* Sticky header z-index */
+.filament-planer-table th.sticky {
+    z-index: 20;
+}
+
+/* Row header (hours) background */
+.filament-planer-table tbody th {
+    background-color: #ffffff;
+}
+
+/* Dark mode support */
+:is(.dark .filament-planer-table) table th,
+:is(.dark .filament-planer-table) table td {
+    border-color: #374151;
+    /* gray-700 */
+}
+
+:is(.dark .filament-planer-table) th {
+    background-color: #1f2937;
+    /* gray-800 */
+}
+
+:is(.dark .filament-planer-table) tbody th {
+    background-color: #111827;
+    /* gray-900 */
+}

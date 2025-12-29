@@ -1,0 +1,27 @@
+{
+    "name": "labapawel/filament-planer",
+    "description": "Filament form component for weekly planning.",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "LabaPawel\\FilamentPlaner\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "LabaPawel\\FilamentPlaner\\FilamentPlanerServiceProvider"
+            ]
+        }
+    },
+    "require": {
+        "php": "^8.2",
+        "filament/filament": "^4.0",
+        "illuminate/support": "^12.0"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
