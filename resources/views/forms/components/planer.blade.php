@@ -140,6 +140,7 @@
         }
     }" 
     @mouseup.window="stopDrag()"
+    class="filament-planer"
     >
         <div class="filament-planer-table overflow-hidden border border-gray-200 rounded-lg dark:border-gray-700 select-none">
             <div class="overflow-x-auto">
