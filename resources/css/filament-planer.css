@@ -42,3 +42,14 @@
     background-color: #111827;
     /* gray-900 */
 }
+
+/* Custom selection style */
+.sel {
+    background-color: #93c5fd !important;
+    /* blue-300 */
+}
+
+:is(.dark) .sel {
+    background-color: #3b82f6;
+    /* blue-500 */
+}

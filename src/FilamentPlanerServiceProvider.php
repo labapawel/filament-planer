@@ -1,6 +1,6 @@
 <?php
 
-namespace LabaPawel\FilamentPlaner;
+namespace labapawel\filamentplaner;
 
 use Filament\Support\Assets\Css;
 use Filament\Support\Assets\Js;

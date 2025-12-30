@@ -1,16 +1,16 @@
 {
-    "name": "labapawel/filament-planer",
+    "name": "labapawel/filamentplaner",
     "description": "Filament form component for weekly planning.",
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "LabaPawel\\FilamentPlaner\\": "src/"
+            "labapawel\\filamentplaner\\": "src/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "LabaPawel\\FilamentPlaner\\FilamentPlanerServiceProvider"
+                "labapawel\\filamentplaner\\FilamentPlanerServiceProvider"
             ]
         }
     },

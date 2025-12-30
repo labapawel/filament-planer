@@ -1,6 +1,6 @@
 <?php
 
-namespace LabaPawel\FilamentPlaner\Forms\Components;
+namespace labapawel\filamentplaner\Forms\Components;
 
 use Filament\Forms\Components\Field;
 

@@ -41,7 +41,7 @@
             
             // Clone array to ensure reactivity
             let currentHours = [...this.state[day]];
-            let index = currentHours.indexOf(hour);
+            let index = currentHours.findIndex(h => h == hour);
             
             if (index > -1) {
                 currentHours.splice(index, 1);
@@ -49,8 +49,6 @@
                 currentHours.push(hour);
             }
             
-            // Reassign to trigger update
-            // Reassign to trigger update
             this.state[day] = currentHours;
         },
 
@@ -93,7 +91,7 @@
             }
             
             let currentHours = [...this.state[day]];
-            let index = currentHours.indexOf(hour);
+            let index = currentHours.findIndex(h => h == hour);
             
             if (this.dragState === true && index === -1) {
                 // Select
@@ -124,19 +122,17 @@
                  targetHours = [...this.hours];
              }
 
-             let hasAllTarget = targetHours.every(h => currentDayHours.includes(h));
+             let hasAllTarget = targetHours.every(h => currentDayHours.some(ch => ch == h));
 
              if (hasAllTarget) {
                  this.state[day] = []; 
              } else {
                  this.state[day] = targetHours;
-             }
-             
-             this.state = {...this.state};
-        },
+              }
+         },
 
         isSelected(day, hour) {
-            return this.state[day] && this.state[day].includes(hour);
+            return this.state[day] && this.state[day].some(h => h == hour);
         }
     }" 
     @mouseup.window="stopDrag()"
@@ -158,9 +154,24 @@
                                             <button 
                                                 type="button" 
                                                 x-on:click="toggleDay(day)"
-                                                class="text-[10px] px-2 py-0.5 rounded bg-gray-200 dark:bg-gray-700 hover:bg-primary-100 dark:hover:bg-primary-900 transition-colors"
+                                                class="rounded p-1 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
                                             >
-                                                <span x-text="state[day] && state[day].length > 0 ? '{{ __('filament-planer::planer.actions.deselect_all_day') }}' : '{{ __('filament-planer::planer.actions.select_all_day') }}'"></span>
+                                                <template x-if="state[day] && state[day].length > 0">
+                                                    <div title="{{ __('filament-planer::planer.actions.deselect_all_day') }}">
+                                                        <x-filament::icon
+                                                            icon="heroicon-m-x-mark"
+                                                            class="w-4 h-4 text-danger-500"
+                                                        />
+                                                    </div>
+                                                </template>
+                                                <template x-if="!state[day] || state[day].length === 0">
+                                                    <div title="{{ __('filament-planer::planer.actions.select_all_day') }}">
+                                                        <x-filament::icon
+                                                            icon="heroicon-m-check"
+                                                            class="w-4 h-4 text-success-500"
+                                                        />
+                                                    </div>
+                                                </template>
                                             </button>
                                         </template>
                                     </div>
@@ -178,30 +189,18 @@
                                 
                                 <!-- Komórki dni (kolumny) -->
                                 <template x-for="day in days" :key="day">
-                                    <td class="p-0 border border-t-0 border-l-0 border-gray-200 dark:border-gray-700">
-                                        <button 
-                                            type="button"
-                                            x-on:mousedown="startDrag(day, hour)"
-                                            x-on:mouseenter="onMouseOver(day, hour)"
-                                            x-on:keydown.enter.prevent="toggle(day, hour)"
-                                            x-on:keydown.space.prevent="toggle(day, hour)"
-                                            :disabled="isDisabled"
-                                            :title="'{{ __('filament-planer::planer.actions.select_hour') }}: ' + dayLabels[day] + ' ' + hour"
-                                            :class="{
-                                                'bg-primary-600 dark:bg-primary-500 shadow-sm': isSelected(day, hour),
-                                                'hover:bg-gray-50 dark:hover:bg-gray-800': !isSelected(day, hour),
-                                                'cursor-not-allowed opacity-70': isDisabled,
-                                                'cursor-pointer': !isDisabled
-                                            }"
-                                            class="w-full h-12 block transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-inset"
-                                        >
-                                            <template x-if="isSelected(day, hour)">
-                                                <x-filament::icon
-                                                    icon="heroicon-m-check"
-                                                    class="w-5 h-5 mx-auto text-white"
-                                                />
-                                            </template>
-                                        </button>
+                                    <td 
+                                        x-on:mousedown="startDrag(day, hour)"
+                                        x-on:mouseenter="onMouseOver(day, hour)"
+                                        :title="'{{ __('filament-planer::planer.actions.select_hour') }}: ' + dayLabels[day] + ' ' + hour"
+                                        :class="{
+                                            'sel shadow-sm': isSelected(day, hour),
+                                            'hover:bg-gray-50 dark:hover:bg-gray-800': !isSelected(day, hour),
+                                            'cursor-not-allowed opacity-70': isDisabled,
+                                            'cursor-pointer': !isDisabled
+                                        }"
+                                        class="p-0 border border-t-0 border-l-0 border-gray-200 dark:border-gray-700 transition-all duration-200"
+                                    >
                                     </td>
                                 </template>
                             </tr>
