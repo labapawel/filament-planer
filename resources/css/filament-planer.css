@@ -53,3 +53,19 @@
     background-color: #3b82f6;
     /* blue-500 */
 }
+
+.filament-planer.relative {
+    position: relative;
+}
+
+.filament-planer .absolute {
+    position: absolute;
+}
+
+.filament-planer .right-0 {
+    right: 0;
+}
+
+.filament-planer .top-0 {
+    top: 0;
+}

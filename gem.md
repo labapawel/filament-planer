@@ -14,6 +14,17 @@ po użytkownik może go edytować lub tylko podglądać, jak ma edycje to może 
 - plik generuje ustawienia w formie json {planer: [["godzina": "godzina", "godzina": "godzina"]]}
 - zaznaczenie też przychodzi w formie json z bazy, musimy podać nazwę pola w tabeli
 
+## Obecny stan (Aktualizacja)
+- **Interaktywność**: Zaznaczanie godzin metodą "przeciągnij i upuść" (drag & drop) oraz kliknięciem.
+- **Ikony**: Zastąpiono tekstowe przyciski "Zaznacz/Odznacz" ikonami (X/Check).
+- **Wygląd**: 
+    - Tabela ma równe szerokości kolumn (dni) dzięki `table-fixed`.
+    - Zaznaczone pola wyróżnione kolorem definiowanym w CSS (niebieski).
+- **Liczniki**:
+    - Wyświetlanie sumy godzin dla całego tygodnia nad tabelą.
+    - Wyświetlanie sumy godzin dla każdego dnia w nagłówku kolumny.
+- **Dostosowanie**: Usunięto zbędne elementy (ikony w komórkach), uproszczono strukturę DOM (`td` zamiast `button`).
+
 # Technologie
 - Laravel 12.x
 - Filament 4.x
@@ -21,4 +32,3 @@ po użytkownik może go edytować lub tylko podglądać, jak ma edycje to może 
 # Adresy dokumentacji
 - https://filamentphp.com/
 - https://laravel.com/docs/12.x
-

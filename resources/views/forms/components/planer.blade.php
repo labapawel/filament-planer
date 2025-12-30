@@ -133,23 +133,39 @@
 
         isSelected(day, hour) {
             return this.state[day] && this.state[day].some(h => h == hour);
+        },
+
+        get totalSelected() {
+            return this.days.reduce((acc, day) => {
+                return acc + (this.state[day] ? this.state[day].length : 0);
+            }, 0);
+        },
+
+        getDayCount(day) {
+            return this.state[day] ? this.state[day].length : 0;
         }
     }" 
     @mouseup.window="stopDrag()"
-    class="filament-planer"
+    class="filament-planer relative"
     >
+        <div class="absolute right-0 top-0 -mt-8 text-sm font-bold text-gray-600 dark:text-gray-400">
+             <span class="ml-2 text-primary-600" x-text="'Sum: ' + totalSelected + ' h'"></span>
+        </div>
         <div class="filament-planer-table overflow-hidden border border-gray-200 rounded-lg dark:border-gray-700 select-none">
             <div class="overflow-x-auto">
-                <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 border-collapse">
+                <table class="w-full table-fixed text-sm text-left text-gray-500 dark:text-gray-400 border-collapse">
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-800 dark:text-gray-400">
                         <tr>
-                            <th scope="col" class="px-4 py-3 sticky left-0 top-0 z-30 bg-gray-50 dark:bg-gray-800 min-w-[100px]">
+                            <th scope="col" class="w-24 px-4 py-3 sticky left-0 top-0 z-30 bg-gray-50 dark:bg-gray-800">
                                 {{ __('filament-planer::planer.labels.hour') }}
                             </th>
                             <template x-for="day in days" :key="day">
-                                <th scope="col" class="px-2 py-3 text-center min-w-[120px] sticky top-0 z-20 bg-gray-50 dark:bg-gray-800 last:border-r-0">
+                                <th scope="col" class="px-2 py-3 text-center sticky top-0 z-20 bg-gray-50 dark:bg-gray-800 last:border-r-0">
                                     <div class="flex flex-col items-center gap-1">
-                                        <span x-text="dayLabels[day]" class="font-bold"></span>
+                                        <div>
+                                            <span x-text="dayLabels[day]" class="font-bold"></span>
+                                            <span class="text-xs text-gray-500 font-normal" x-text="'(' + getDayCount(day) + ' h)'"></span>
+                                        </div>
                                         <template x-if="fullDayConfig.enabled && !isDisabled">
                                             <button 
                                                 type="button" 
