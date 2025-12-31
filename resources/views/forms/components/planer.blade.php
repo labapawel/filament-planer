@@ -148,9 +148,6 @@
     @mouseup.window="stopDrag()"
     class="filament-planer relative"
     >
-        <div class="absolute right-0 top-0 -mt-8 text-sm font-bold text-gray-600 dark:text-gray-400">
-             <span class="ml-2 text-primary-600" x-text="'Sum: ' + totalSelected + ' h'"></span>
-        </div>
         <div class="filament-planer-table overflow-hidden border border-gray-200 rounded-lg dark:border-gray-700 select-none">
             <div class="overflow-x-auto">
                 <table class="w-full table-fixed text-sm text-left text-gray-500 dark:text-gray-400 border-collapse">
@@ -225,5 +222,9 @@
                 </table>
             </div>
         </div>
+        <div class=" -mt-8 text-sm font-bold text-gray-600 dark:text-gray-400">
+             <span class="ml-2 text-primary-600" x-text="'Sum: ' + totalSelected + ' h'"></span>
+        </div>
+
     </div>
 </x-dynamic-component>
