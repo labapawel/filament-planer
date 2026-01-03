@@ -2,6 +2,8 @@
 
 A Filament PHP form component that creates an interactive weekly timetable, allowing users to select specific hours for each day of the week.
 
+![image.png](image.png)
+
 ## Features
 
 - **Weekly Timetable UI:** Responsive grid layout with hours on the left and days on top.
